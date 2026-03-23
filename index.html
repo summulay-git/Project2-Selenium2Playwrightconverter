@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLAST Converter | Selenium to Playwright</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: radial-gradient(circle at top left, #0f172a, #1e293b);
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .vibrant-border {
+            border-image: linear-gradient(to right, #38bdf8, #818cf8) 1;
+        }
+        .glow:hover {
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+        }
+        textarea {
+            background: rgba(15, 23, 42, 0.5) !important;
+            color: #e2e8f0 !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #38bdf8 !important;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+        }
+    </style>
+</head>
+<body class="p-8">
+    <div class="max-w-7xl mx-auto">
+        <header class="mb-12 flex justify-between items-center">
+            <div>
+                <h1 class="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-indigo-400">
+                    B.L.A.S.T. Converter
+                </h1>
+                <p class="text-slate-400 mt-2">Selenium Java (TestNG) to Playwright (JS/TS)</p>
+            </div>
+            <div class="glass px-6 py-2 rounded-full text-sm font-medium border border-sky-500/30">
+                Phase 3: Architect
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Input Section -->
+            <div class="space-y-4">
+                <div class="flex justify-between items-center px-2">
+                    <label class="text-sm font-semibold tracking-wider uppercase text-sky-400">Source: Selenium Java</label>
+                    <button class="text-xs text-slate-500 hover:text-white transition-colors">Clear</button>
+                </div>
+                <textarea id="sourceCode" class="w-full h-[500px] p-6 rounded-2xl glass font-mono text-sm resize-none" placeholder="Paste your Selenium Java / TestNG code here..."></textarea>
+            </div>
+
+            <!-- Output Section -->
+            <div class="space-y-4">
+                <div class="flex justify-between items-center px-2">
+                    <label class="text-sm font-semibold tracking-wider uppercase text-indigo-400">Output: Playwright TS</label>
+                    <div class="flex gap-4">
+                        <select id="targetLanguage" class="bg-transparent text-xs text-slate-300 border-none outline-none">
+                            <option value="typescript">TypeScript</option>
+                            <option value="javascript">JavaScript</option>
+                        </select>
+                        <button id="copyBtn" class="text-xs text-slate-500 hover:text-white transition-colors">Copy Link</button>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <pre id="outputCode" class="w-full h-[500px] p-6 rounded-2xl glass overflow-auto font-mono text-sm text-indigo-300 border border-indigo-500/20">
+// Your converted code will appear here...
+                    </pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 flex justify-center">
+            <button id="convertBtn" class="px-12 py-4 bg-gradient-to-r from-sky-500 to-indigo-600 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-lg shadow-sky-500/20 active:scale-95">
+                Convert Code
+            </button>
+        </div>
+
+        <footer class="mt-20 text-center text-slate-500 text-sm">
+            &copy; 2026 BLAST Protocol System Pilot | Self-Healing Automation
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('convertBtn').addEventListener('click', async () => {
+            const source = document.getElementById('sourceCode').value;
+            const target = document.getElementById('targetLanguage').value;
+            const output = document.getElementById('outputCode');
+            
+            if (!source.trim()) return alert('Please enter source code');
+
+            output.textContent = '// Processing conversion...';
+            
+            try {
+                // In a real scenario, this would call the Python backend
+                // For this demo/first iteration, we signal the System Pilot
+                console.log('Conversion requested for:', source);
+                // Placeholder for actual logic
+                output.textContent = '// Backend simulation in progress...';
+            } catch (err) {
+                output.textContent = '// Error during conversion: ' + err.message;
+            }
+        });
+    </script>
+</body>
+</html>
